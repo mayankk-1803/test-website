@@ -1,30 +1,91 @@
-import { Star } from 'lucide-react';
-import { testimonials } from '../data';
-import './Testimonials.css';
+import { useEffect, useState } from "react";
+import { testimonials } from "../data";
+import "./Testimonials.css";
+
+type Testimonial = {
+  name: string;
+  review: string;
+  rating: number;
+};
 
 const Testimonials = () => {
-  const renderStars = (rating: number) => {
-    return Array.from({ length: rating }, (_, i) => (
-      <Star key={i} size={20} fill="#EAB308" color="#EAB308" />
-    ));
+
+  const [allTestimonials, setAllTestimonials] =
+    useState<Testimonial[]>([]);
+
+  const loadReviews = async () => {
+
+  try {
+
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/reviews`
+    );
+
+    const dbReviews = await res.json();
+
+    setAllTestimonials([
+      ...testimonials,
+      ...dbReviews
+    ]);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
+
+  useEffect(() => {
+
+  loadReviews();
+
+  window.addEventListener(
+    "reviewAdded",
+    loadReviews
+  );
+
+  return () =>
+    window.removeEventListener(
+      "reviewAdded",
+      loadReviews
+    );
+
+}, []);
+
+
+  const renderStars = (rating: number): string => {
+    return "★".repeat(rating);
   };
 
   return (
     <section className="testimonials-section">
-      <div className="testimonials-container">
-        <h2 className="testimonials-title">What Our Customers Say</h2>
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="testimonial-card">
+
+      <div className="marquee">
+
+        <div className="marquee-content">
+
+          {[...allTestimonials, ...allTestimonials]
+          .map((testimonial, index)=>(
+            
+            <div key={index} className="testimonial-card">
+
               <div className="testimonial-stars">
                 {renderStars(testimonial.rating)}
               </div>
-              <p className="testimonial-review">{testimonial.review}</p>
-              <p className="testimonial-name">{testimonial.name}</p>
+
+              <p>{testimonial.review}</p>
+
+              <p>— {testimonial.name}</p>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
   );
 };

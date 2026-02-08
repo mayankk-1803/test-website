@@ -14,30 +14,44 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
+
+/* FIXED IMAGE CONTAINER */
 .product-image-container {
   width: 100%;
   height: 250px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #F5EFE6 0%, #FAF7F0 100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #F5EFE6 0%,
+    #FAF7F0 100%
+  );
 }
 
-.product-3d-showcase {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #F5EFE6 0%, #FAF7F0 100%);
-}
 
+/* FIXED IMAGE DISPLAY */
 .product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
   transition: transform 0.3s ease;
 }
 
+
+/* Optional hover zoom without cropping */
 .product-card:hover .product-image {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
+
 
 .product-content {
   padding: 1.5rem;
@@ -81,9 +95,11 @@
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
   transition: all 0.3s ease;
 }
 
@@ -92,7 +108,10 @@
   transform: scale(1.05);
 }
 
+
+/* Mobile */
 @media (max-width: 480px) {
+
   .product-image-container {
     height: 200px;
   }
@@ -117,4 +136,13 @@
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
+
+}
+
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
 }

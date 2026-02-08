@@ -4,7 +4,7 @@
   padding: 6rem 2rem;
   text-align: center;
   overflow: hidden;
-  min-height: 700px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,7 @@
 }
 
 .hero-tagline {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #000000;
   margin-bottom: 2.5rem;
   line-height: 1.6;

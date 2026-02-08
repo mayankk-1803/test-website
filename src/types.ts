@@ -1,9 +1,10 @@
 export interface Product {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: number;
   image: string;
+  id?: number; 
 }
 
 export interface Testimonial {

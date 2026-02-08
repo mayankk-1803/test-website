@@ -1,0 +1,523 @@
+.admin-container {
+
+  min-height: 100vh;
+  width: 100%;
+
+  padding: 2rem;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      135deg,
+      #FAF7F0 0%,
+      #F5EFE6 100%
+    );
+
+}
+
+
+
+/* TITLE */
+
+.admin-container h1 {
+
+  font-size: 3rem;
+  font-weight: 800;
+
+  color: #DC2626;
+
+  margin-bottom: 2rem;
+
+  text-align: center;
+
+}
+
+
+
+/* TABS */
+
+.admin-tabs {
+
+  display: flex;
+  justify-content: center;
+
+  gap: 1rem;
+
+  margin-bottom: 2.5rem;
+
+}
+
+.admin-tabs button {
+
+  padding: 0.75rem 1.75rem;
+
+  border-radius: 8px;
+
+  border: 2px solid #DC2626;
+
+  background: transparent;
+  color: #DC2626;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+.admin-tabs button:hover {
+
+  background: #DC2626;
+  color: white;
+
+  transform: translateY(-2px);
+
+}
+
+.admin-tabs .active {
+
+  background: #DC2626;
+  color: white;
+
+}
+
+
+
+/* GRID */
+
+.admin-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 280px));
+
+  justify-content: center;
+
+  gap: 2rem;
+
+}
+
+
+
+/* CARD */
+
+.admin-card {
+
+  width: 280px;
+  height: 360px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+
+}
+
+.admin-card:hover {
+
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.18);
+
+}
+
+
+
+/* IMAGE */
+
+.admin-card img {
+
+  width: 100%;
+  height: 180px;
+
+  object-fit: contain;
+
+  background:
+    linear-gradient(
+      135deg,
+      #FAF7F0,
+      #F5EFE6
+    );
+
+}
+
+
+
+/* TEXT */
+
+.admin-card h3 {
+
+  padding: 0.75rem 1rem 0;
+
+  color: #DC2626;
+
+  font-size: 1.2rem;
+
+}
+
+.admin-card p {
+
+  padding: 0 1rem;
+
+  font-weight: 700;
+
+  color: #EAB308;
+
+  font-size: 1.1rem;
+
+}
+
+
+
+/* BUTTON CONTAINER */
+
+.admin-card-buttons {
+
+  display: flex;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  margin-top: auto;
+
+}
+
+
+
+/* BOTH BUTTONS BASE */
+
+.admin-card-buttons button {
+
+  flex: 1;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+
+
+/* EDIT BUTTON */
+
+.edit-btn {
+
+  background: #EAB308;
+  color: white;
+
+}
+
+.edit-btn:hover {
+
+  background: #CA8A04;
+
+  transform: translateY(-2px);
+
+}
+
+
+
+/* DELETE BUTTON */
+
+.delete-btn {
+
+  background: #DC2626;
+  color: white;
+
+}
+
+.delete-btn:hover {
+
+  background: #B91C1C;
+
+  transform: translateY(-2px);
+
+}
+
+
+
+/* FORM CENTER */
+
+.admin-form-wrapper {
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  min-height: 65vh;
+
+}
+
+
+
+/* FORM */
+
+.admin-form {
+
+  width: 100%;
+  max-width: 500px;
+
+  background: white;
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+}
+
+
+
+/* INPUT */
+
+.admin-form input,
+.admin-form textarea {
+
+  padding: 0.75rem;
+
+  border-radius: 6px;
+
+  border: 1px solid #ccc;
+
+  font-size: 14px;
+
+  outline: none;
+
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+
+  border-color: #DC2626;
+
+}
+
+
+
+/* FORM BUTTON */
+
+.admin-form button {
+
+  padding: 0.75rem;
+
+  border-radius: 8px;
+
+  border: none;
+
+  background: #DC2626;
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+.admin-form button:hover {
+
+  background: #B91C1C;
+
+  transform: translateY(-2px);
+
+}
+
+
+
+/* MODAL */
+
+.admin-modal {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.5);
+
+  backdrop-filter: blur(4px);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+
+}
+
+
+
+/* MODAL CONTENT */
+
+.admin-modal-content {
+
+  background: white;
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  width: 400px;
+
+  animation: scaleIn 0.2s ease;
+
+  box-shadow:
+    0 12px 32px rgba(0,0,0,0.25);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+}
+
+
+
+/* MODAL BUTTONS */
+
+.admin-modal-buttons {
+
+  display: flex;
+
+  gap: 10px;
+
+}
+
+.admin-modal-buttons button {
+
+  flex: 1;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+}
+
+
+
+/* UPDATE BUTTON */
+
+.admin-modal-buttons button:first-child {
+
+  background: #DC2626;
+  color: white;
+
+}
+
+.admin-modal-buttons button:first-child:hover {
+
+  background: #B91C1C;
+
+}
+
+
+
+/* CANCEL BUTTON */
+
+.admin-modal-buttons button:last-child {
+
+  background: #E5E7EB;
+  color: black;
+
+}
+
+.admin-modal-buttons button:last-child:hover {
+
+  background: #D1D5DB;
+
+}
+
+
+
+/* ANIMATION */
+
+@keyframes scaleIn {
+
+  from {
+
+    transform: scale(0.95);
+    opacity: 0;
+
+  }
+
+  to {
+
+    transform: scale(1);
+    opacity: 1;
+
+  }
+
+}
+
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .admin-container {
+
+    padding: 1rem;
+
+  }
+
+  .admin-container h1 {
+
+    font-size: 2rem;
+
+  }
+
+  .admin-card {
+
+    width: 100%;
+
+  }
+
+  .admin-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}

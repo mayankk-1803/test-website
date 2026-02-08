@@ -1,22 +1,33 @@
-import { ArrowRight } from 'lucide-react';
-import { Suspense } from 'react';
-import ThreeDBackground from './ThreeDBackground';
-import './Hero.css';
+import { ArrowRight } from "lucide-react";
+import { Suspense } from "react";
+import ThreeDBackground from "./ThreeDBackground";
+import "./Hero.css";
 
 const Hero = () => {
   return (
     <section className="hero" id="home">
+
+      {/* 3D Globe Background */}
       <Suspense fallback={null}>
         <ThreeDBackground />
       </Suspense>
+
+      {/* Hero Content */}
       <div className="hero-container">
-        <h1 className="hero-title">TrendyShop</h1>
-        <p className="hero-tagline">Discover Premium Quality Products That Elevate Your Lifestyle</p>
+        <h1 className="hero-title">
+          Prime Origin Exports
+        </h1>
+
+        <h3 className="hero-tagline">
+          Committed to Quality. Accountable in Every Shipment.
+        </h3>
+
         <button className="hero-cta">
           Shop Now
           <ArrowRight size={20} />
         </button>
       </div>
+
     </section>
   );
 };

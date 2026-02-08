@@ -1,0 +1,29 @@
+.burst-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.burst-emoji {
+  position: absolute;
+  opacity: 0.45;
+  animation: burstStraight 2.2s ease-out forwards;
+}
+
+@keyframes burstStraight {
+
+  0% {
+    transform: translate(0px, 0px) scale(0.6);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(
+      calc(cos(var(--angle)) * var(--distance)),
+      calc(sin(var(--angle)) * var(--distance))
+    ) scale(1);
+    opacity: 0;
+  }
+
+}

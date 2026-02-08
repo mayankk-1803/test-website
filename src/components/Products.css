@@ -1,6 +1,6 @@
 .products-section {
   background-color: #FAF7F0;
-  padding: 5rem 2rem;
+  padding: 2px;
 }
 
 .products-container {
@@ -50,4 +50,15 @@
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
 }

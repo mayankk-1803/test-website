@@ -49,19 +49,19 @@ export const products: Product[] = [
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Sarah Johnson',
+    name: 'Mayank Mathur',
     review: 'Amazing products! The quality exceeded my expectations. Fast shipping and excellent customer service.',
     rating: 5
   },
   {
     id: 2,
-    name: 'Michael Chen',
+    name: 'Arjun Singh',
     review: 'I\'ve been shopping here for over a year now. Always reliable and their products are top-notch.',
     rating: 5
   },
   {
     id: 3,
-    name: 'Emma Williams',
+    name: 'Manaj Kaushik',
     review: 'Best online shopping experience ever! The products arrived perfectly packaged and exactly as described.',
     rating: 5
   }

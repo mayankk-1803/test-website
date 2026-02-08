@@ -1,0 +1,164 @@
+.buy-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.buy-modal {
+  background: #fffaf2;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.2s ease;
+}
+
+.buy-modal h2 {
+  margin-bottom: 1rem;
+  color: #dc2626;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.buy-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.buy-modal input,
+.buy-modal textarea {
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+.buy-modal textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.buy-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.buy-actions button {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buy-actions button:first-child {
+  background-color: #dc2626;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #e5e7eb;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+.buy-modal select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.success-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.success-check {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: white;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+.quantity-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.quantity-stepper button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #dc2626;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.quantity-stepper button:hover {
+  background-color: #b91c1c;
+  transform: scale(1.1);
+}
+
+.quantity-stepper span {
+  min-width: 24px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.success-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.success-content {
+  position: relative;
+  z-index: 1;
+}
