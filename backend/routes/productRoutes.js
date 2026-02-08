@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 // ADD PRODUCT
-router.post("/add",upload.single("image"), async (req, res) => {
+router.post("/",upload.single("image"), async (req, res) => {
  console.log("body", req.body);
  console.log("file", req.file);
   try {
@@ -38,7 +38,7 @@ router.post("/add",upload.single("image"), async (req, res) => {
 
 
 // GET PRODUCTS
-router.get("/get", async (req, res) => {
+router.get("/", async (req, res) => {
   // console.log("inside get route", req);
   
   const products = await Product.find();

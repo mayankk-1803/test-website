@@ -61,7 +61,7 @@ const AdminPanel = () => {
   const fetchProducts = async () => {
 
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/products/get`
+      `${import.meta.env.VITE_API_URL}/api/products`
     );
 
     const data = await res.json();
@@ -115,7 +115,7 @@ const AdminPanel = () => {
 
     const res = await fetch(
 
-      `${import.meta.env.VITE_API_URL}/api/products/add`,
+      `${import.meta.env.VITE_API_URL}/api/products`,
 
       {
         method:"POST",
