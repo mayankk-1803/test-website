@@ -76,7 +76,7 @@ const Footer = ({ onAboutClick }: Props) => {
           <div className="footer-content">
             {/* Brand */}
             <div className="footer-section">
-              <h3 className="footer-brand">TrendyShop</h3>
+              <h3 className="footer-brand">Prime Origin Exports</h3>
 
               <p className="footer-description">
                 Your trusted destination for premium quality products
