@@ -1,22 +1,22 @@
 import { SignIn } from "@clerk/clerk-react";
 
-const AdminLogin = () => {
+export default function AdminLogin() {
 
   return (
 
     <div style={{
-      display:"flex",
-      justifyContent:"center",
-      alignItems:"center",
-      height:"100vh"
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
     }}>
 
-      <SignIn />
+      <SignIn
+        routing="path"
+        path="/admin/login"
+      />
 
     </div>
 
   );
-
-};
-
-export default AdminLogin;
+}
