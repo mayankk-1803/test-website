@@ -13,13 +13,21 @@ const app = express();
 
 
 //Proper CORS setup
+const allowedOrigin = process.env.FRONTEND_URL;
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    origin: (origin, callback) => {
+      if (!origin || origin === allowedOrigin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true
   })
 );
+
 
 // Middleware
 app.use(express.json());
