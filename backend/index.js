@@ -12,32 +12,48 @@ dotenv.config();
 const app = express();
 
 
-//Proper CORS setup
-const allowedOrigin = process.env.FRONTEND_URL;
+//Allowed origins 
+const allowedOrigins = [
+  process.env.FRONTEND_URL,      
+  "http://localhost:5173",      
+  "http://localhost:3000"       
+];
 
+
+//Production-ready CORS
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || origin === allowedOrigin) {
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      const normalizedOrigin = origin.replace(/\/$/, "");
+
+      if (allowedOrigins.includes(normalizedOrigin)) {
         callback(null, true);
       } else {
+        console.log("Blocked by CORS:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
+
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
 );
 
 
-// Middleware
+//Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 // MongoDB connection
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error("MongoDB error:", err));
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err));
 
 
 // Routes
@@ -48,13 +64,38 @@ app.use("/api/products", productRoutes);
 
 // Health check
 app.get("/", (req, res) => {
-  res.send("Backend running successfully");
+  res.status(200).json({
+    success: true,
+    message: "Backend running successfully"
+  });
 });
 
 
-// Start server
+//Handle unknown routes
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found"
+  });
+});
+
+
+//Global error handler
+app.use((err, req, res, next) => {
+
+  console.error(err.stack);
+
+  res.status(500).json({
+    success: false,
+    message: err.message || "Internal Server Error"
+  });
+
+});
+
+
+// tart server
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
