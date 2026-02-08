@@ -1,0 +1,56 @@
+.admin-enquiries {
+
+  padding: 2rem;
+
+}
+
+.admin-enquiries h2 {
+
+  margin-bottom: 1rem;
+
+  color: #DC2626;
+
+}
+
+.admin-enquiries table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: white;
+
+}
+
+.admin-enquiries th,
+.admin-enquiries td {
+
+  padding: 12px;
+
+  border-bottom: 1px solid #ddd;
+
+}
+
+.admin-enquiries th {
+
+  background: #DC2626;
+
+  color: white;
+
+}
+
+.delete-btn {
+
+  background: #DC2626;
+
+  color: white;
+
+  border: none;
+
+  padding: 6px 12px;
+
+  cursor: pointer;
+
+  border-radius: 6px;
+
+}

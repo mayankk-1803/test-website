@@ -2,95 +2,168 @@ import { useState } from "react";
 import "./BuyNowForm.css";
 import BurstConfetti from "./BurstConfetti";
 
-interface BuyNowFormProps {
-  product: any;
+interface EnquiryFormProps {
+  product?: {
+    _id?: string | null;
+    name?: string;
+  } | null;
   onClose: () => void;
 }
 
-const BuyNowForm = ({ product, onClose }: BuyNowFormProps) => {
+
+const EnquiryForm = ({ product, onClose }: EnquiryFormProps) => {
+
+  // Detect general enquiry safely
+  const isGeneralEnquiry =
+    !product ||
+    !product._id ||
+    product._id === "";
+
+  const productName =
+    isGeneralEnquiry
+      ? "General Enquiry"
+      : product.name || "Product Enquiry";
+
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    address: "",
+    message: ""
   });
 
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showBurst, setShowBurst] = useState(false);
 
+
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
+
     e.preventDefault();
+
     setLoading(true);
 
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          productId: product._id,
-          productName: product.name,
-        }),
-      });
+
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/enquiries`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+
+            productId:
+              isGeneralEnquiry
+                ? null
+                : product?._id,
+
+            productName:
+              productName
+
+          })
+        }
+      );
+
+
+      if (!res.ok)
+        throw new Error("Failed");
+
 
       setSuccess(true);
       setShowBurst(true);
 
+
       setTimeout(() => {
+
         setShowBurst(false);
         onClose();
+
       }, 2500);
-    } catch (error) {
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+
     }
+    catch (err) {
+
+      console.error(err);
+
+      alert("Failed to send enquiry");
+
+    }
+    finally {
+
+      setLoading(false);
+
+    }
+
   };
 
+
   return (
-    <div className="buy-modal-overlay" onClick={onClose}>
+
+    <div
+      className="buy-modal-overlay"
+      onClick={onClose}
+    >
+
       <div
         className="buy-modal"
         onClick={(e) => e.stopPropagation()}
       >
+
         {success ? (
+
           <div className="success-container">
 
-            {/*Confetti BEHIND confirmation */}
             {showBurst && <BurstConfetti />}
 
-            {/*Confirmation content ABOVE confetti */}
             <div className="success-content">
+
               <div className="success-check">✓</div>
 
-              <h2>Order Placed 🎉</h2>
+              <h2>Enquiry Sent 🎉</h2>
 
-              <p>We’ll contact you shortly.</p>
+              <p>We will contact you shortly.</p>
+
             </div>
 
           </div>
+
         ) : (
+
           <>
-            <h2>Buy {product.name}</h2>
+
+            <h2>
+              {isGeneralEnquiry
+                ? "General Enquiry"
+                : `Enquiry for ${productName}`}
+            </h2>
+
 
             <form onSubmit={handleSubmit}>
+
               <input
                 name="name"
-                placeholder="Name"
+                placeholder="Your Name"
                 required
                 onChange={handleChange}
               />
@@ -98,21 +171,21 @@ const BuyNowForm = ({ product, onClose }: BuyNowFormProps) => {
               <input
                 name="email"
                 type="email"
-                placeholder="Email"
+                placeholder="Your Email"
                 required
                 onChange={handleChange}
               />
 
               <input
                 name="phone"
-                placeholder="Phone"
+                placeholder="Phone Number"
                 required
                 onChange={handleChange}
               />
 
               <textarea
-                name="address"
-                placeholder="Address"
+                name="message"
+                placeholder="Your Message"
                 required
                 onChange={handleChange}
               />
@@ -125,9 +198,10 @@ const BuyNowForm = ({ product, onClose }: BuyNowFormProps) => {
                   disabled={loading}
                 >
                   {loading
-                    ? "Placing Order..."
-                    : `Confirm Order for ${product.name}`}
+                    ? "Sending..."
+                    : "Send Enquiry"}
                 </button>
+
 
                 <button
                   type="button"
@@ -140,11 +214,17 @@ const BuyNowForm = ({ product, onClose }: BuyNowFormProps) => {
               </div>
 
             </form>
+
           </>
+
         )}
+
       </div>
+
     </div>
+
   );
+
 };
 
-export default BuyNowForm;
+export default EnquiryForm;

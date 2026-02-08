@@ -1,6 +1,8 @@
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import "./Navbar.css";
+
+import EnquiryForm from "./EnquiryForm";
 
 interface Props {
   onAboutClick: () => void;
@@ -10,70 +12,149 @@ const Navbar = ({ onAboutClick }: Props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleAboutClick = (e: React.MouseEvent) => {
+  const [showEnquiry, setShowEnquiry] =
+    useState(false);
+
+
+  const handleAboutClick = (
+    e: React.MouseEvent
+  ) => {
+
     e.preventDefault();
+
     onAboutClick();
+
     setIsOpen(false);
+
   };
+
+
+  const handleEnquiryClick = (
+    e: React.MouseEvent
+  ) => {
+
+    e.preventDefault();
+
+    setShowEnquiry(true);
+
+    setIsOpen(false);
+
+  };
+
 
   return (
     <>
+
       <nav className="navbar">
 
         <div className="navbar-container">
 
-          {/* Logo */}
+
+          {/* LOGO */}
           <div className="navbar-logo">
-            <img src="/vlogo.png" alt="Prime Origin Exports Logo" className="navbar-logo-image" />
+
+            <img
+              src="/vlogo.png"
+              alt="Prime Origin Exports Logo"
+              className="navbar-logo-image"
+            />
+
           </div>
 
 
-          {/* Menu */}
+          {/* MENU */}
           <ul className={`navbar-menu ${isOpen ? "active" : ""}`}>
 
             <li>
-              <a href="#home" onClick={()=>setIsOpen(false)}>
+              <a
+                href="#home"
+                onClick={() => setIsOpen(false)}
+              >
                 Home
               </a>
             </li>
 
+
             <li>
-              <a href="#" onClick={handleAboutClick}>
+              <a
+                href="#"
+                onClick={handleAboutClick}
+              >
                 About Us
               </a>
             </li>
 
+
+            {/* ENQUIRY */}
             <li>
-              <a href="#contact" onClick={()=>setIsOpen(false)}>
+
+              <a
+                href="#"
+                onClick={handleEnquiryClick}
+                className="navbar-enquiry-btn"
+              >
+                Enquiry
+              </a>
+
+            </li>
+
+
+            <li>
+              <a
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+              >
                 Contact
               </a>
             </li>
 
+
           </ul>
 
 
-          {/* Burger */}
+          {/* BURGER */}
           <div
             className="navbar-toggle"
-            onClick={()=>setIsOpen(!isOpen)}
+            onClick={() =>
+              setIsOpen(!isOpen)
+            }
           >
+
             {isOpen
               ? <X size={28}/>
-              : <Menu size={28}/>
-            }
+              : <Menu size={28}/>}
           </div>
+
 
         </div>
 
       </nav>
 
 
-      {/* Overlay */}
+      {/* MOBILE OVERLAY */}
       {isOpen && (
+
         <div
           className="navbar-overlay"
-          onClick={()=>setIsOpen(false)}
+          onClick={() => setIsOpen(false)}
         />
+
+      )}
+
+
+      {/* GENERAL ENQUIRY POPUP */}
+      {showEnquiry && (
+
+        <EnquiryForm
+
+          product={null}
+
+          onClose={() =>
+            setShowEnquiry(false)
+          }
+
+        />
+
       )}
 
     </>

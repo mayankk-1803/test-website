@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import orderRoutes from "./routes/orderRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import enquiryRoutes from "./routes/enquiryRoutes.js";
+
 
 dotenv.config();
 
@@ -60,6 +62,7 @@ mongoose
 app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/enquiries", enquiryRoutes);
 
 
 // Health check

@@ -490,6 +490,252 @@
 
 }
 
+/* ========================= */
+/* ENQUIRY TABLE UI */
+/* ========================= */
+
+.admin-enquiry-wrapper {
+
+  display: flex;
+  justify-content: center;
+
+}
+
+
+.admin-table-card {
+
+  width: 100%;
+  max-width: 1200px;
+
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 1.5rem;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.08);
+
+}
+
+
+
+/* Header */
+
+.admin-table-header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 1.5rem;
+
+}
+
+.admin-table-header h2 {
+
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  color: #DC2626;
+
+}
+
+.admin-table-header span {
+
+  font-size: 0.9rem;
+
+  color: #6b7280;
+
+}
+
+
+
+/* Table container */
+
+.admin-table-container {
+
+  overflow-x: auto;
+
+}
+
+
+
+/* Table */
+
+.admin-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+}
+
+
+
+/* Header row */
+
+.admin-table thead {
+
+  background: #f9fafb;
+
+}
+
+.admin-table th {
+
+  text-align: left;
+
+  padding: 14px;
+
+  font-size: 0.9rem;
+
+  color: #374151;
+
+}
+
+
+
+/* Body row */
+
+.admin-table td {
+
+  padding: 14px;
+
+  border-top: 1px solid #f1f5f9;
+
+  font-size: 0.9rem;
+
+}
+
+
+
+/* Hover */
+
+.admin-table tbody tr {
+
+  transition: background 0.2s ease;
+
+}
+
+.admin-table tbody tr:hover {
+
+  background: #f9fafb;
+
+}
+
+
+
+/* Product */
+
+.product-cell {
+
+  font-weight: 600;
+
+  color: #DC2626;
+
+}
+
+
+
+/* Customer */
+
+.customer-cell {
+
+  font-weight: 500;
+
+}
+
+
+
+/* Contact */
+
+.contact-cell {
+
+  font-size: 0.85rem;
+
+}
+
+.contact-cell .phone {
+
+  font-size: 0.8rem;
+
+  color: #6b7280;
+
+}
+
+
+
+/* Message */
+
+.message-cell {
+
+  max-width: 250px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+}
+
+
+
+/* Date */
+
+.date-cell {
+
+  color: #6b7280;
+
+}
+
+
+
+/* Delete Button */
+
+.delete-btn-modern {
+
+  background: #DC2626;
+
+  color: white;
+
+  border: none;
+
+  padding: 6px 14px;
+
+  border-radius: 6px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+}
+
+.delete-btn-modern:hover {
+
+  background: #B91C1C;
+
+  transform: translateY(-1px);
+
+}
+
+
+
+/* Empty row */
+
+.empty-row {
+
+  text-align: center;
+
+  padding: 30px;
+
+  color: #6b7280;
+
+}
+
+
 
 
 /* RESPONSIVE */

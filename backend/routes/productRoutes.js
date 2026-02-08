@@ -15,7 +15,6 @@ router.post("/",upload.single("image"), async (req, res) => {
 
       name: req.body.name,
       description: req.body.description,
-      price: req.body.price,
       image: req.file.path
 
     });
