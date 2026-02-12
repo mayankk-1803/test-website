@@ -131,32 +131,39 @@ const Hero = () => {
 
 
         {/* CTA Button */}
-        <motion.button
-          className="hero-cta"
-          variants={{
-            hidden: {
-              opacity: 0,
-              y: 20
-            },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.6,
-                ease: "easeOut"
-              }
-            }
-          }}
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 10px 25px rgba(220,38,38,0.4)"
-          }}
-          whileTap={{
-            scale: 0.96
-          }}
-        >
-          Shop Now →
-        </motion.button>
+       <motion.button
+  className="hero-cta"
+  onClick={() => {
+    const section = document.getElementById("products");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }}
+  variants={{
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }}
+  whileHover={{
+    scale: 1.05,
+    boxShadow: "0 10px 25px rgba(220,38,38,0.4)"
+  }}
+  whileTap={{ scale: 0.96 }}
+>
+  Shop Now →
+</motion.button>
+
+
 
 
       </motion.div>

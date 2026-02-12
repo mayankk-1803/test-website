@@ -38,7 +38,7 @@ const Products = () => {
 
   return (
 
-    <section
+    <section id="products"
       className="products-section fade-up"
       ref={ref}
     >
