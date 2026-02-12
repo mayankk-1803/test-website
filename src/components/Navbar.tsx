@@ -1,5 +1,10 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 import "./Navbar.css";
 
 import EnquiryForm from "./EnquiryForm";

@@ -7,6 +7,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import enquiryRoutes from "./routes/enquiryRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
 
 dotenv.config();
@@ -54,8 +55,8 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB error:", err));
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB error:", err));
 
 
 // Routes
@@ -63,6 +64,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/enquiries", enquiryRoutes);
+app.use("/api/chat", chatRoutes);
 
 
 // Health check
@@ -100,5 +102,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import type { Product } from "../types";
+
 import "./Products.css";
 
 const Products = () => {

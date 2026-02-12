@@ -10,6 +10,7 @@ import AboutModal from "./components/AboutModal";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminProtected from "./admin/AdminProtected";
+import Chatbot from "./components/Chatbot";
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
               <Hero />
 
               <Products />
-
+              <Chatbot />
               <Testimonials />
 
               <Footer

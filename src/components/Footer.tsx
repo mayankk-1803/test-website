@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Facebook, Instagram, Twitter, Mail, Star } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Star, Linkedin, X } from "lucide-react";
 
 import BurstConfetti from "./BurstConfetti";
 import "../components/BuyNowForm.css";
@@ -104,20 +104,23 @@ const Footer = ({ onAboutClick }: Props) => {
             <div className="footer-section">
               <h4 className="footer-heading">Connect With Us</h4>
 
-              <div className="footer-socials">
-                <a href="#">
+              <div className="footer-socials" >
+                <a href="https://www.facebook.com/profile.php?id=61588088668587" target="_blank">
                   <Facebook size={24} />
                 </a>
 
-                <a href="#">
+                <a href="https://www.instagram.com/primeoriginexports?igsh=MWFoazdzNWZsMG9sMA%3D%3D&utm_source=qr" target="_blank">
                   <Instagram size={24} />
                 </a>
 
-                <a href="#">
-                  <Twitter size={24} />
+                <a href="https://x.com/PrimeOriginEXIM" target="_blank">
+                  <X size={24} />
+                </a>
+                <a href="https://www.linkedin.com/company/111581365/admin/dashboard/" target="_blank">
+                  <Linkedin size={24} />
                 </a>
 
-                <a href="mailto:primeoriginexports@gmail.com">
+                <a href="mailto:primeoriginexports@gmail.com" target="_blank">
                   <Mail size={24} />
                 </a>
               </div>
