@@ -40,7 +40,9 @@ router.post("/",upload.single("image"), async (req, res) => {
 router.get("/", async (req, res) => {
   // console.log("inside get route", req);
   
-  const products = await Product.find();
+  const products = await Product
+  .find()
+  .lean();
   // console.log(products);
   
   res.json(products);
