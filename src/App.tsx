@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -14,13 +14,23 @@ import Chatbot from "./components/Chatbot";
 
 function App() {
 
-  // Global About modal state
   const [showAbout, setShowAbout] = useState(false);
 
+  /* =========================
+     BACKEND WARMUP CALL
+     ========================= */
+
+  useEffect(() => {
+
+    fetch(`${import.meta.env.VITE_API_URL}/api/warmup`)
+      .then(() => console.log("Backend warmed"))
+      .catch(() => console.log("Warmup failed"));
+
+  }, []);
+
+
   return (
-
     <>
-
       <Routes>
 
         {/* MAIN WEBSITE */}
@@ -35,7 +45,9 @@ function App() {
               <Hero />
 
               <Products />
+
               <Chatbot />
+
               <Testimonials />
 
               <Footer
@@ -53,7 +65,7 @@ function App() {
         />
 
 
-        {/* PROTECTED ADMIN PANEL */}
+        {/* ADMIN PANEL */}
         <Route
           path="/admin"
           element={<AdminProtected />}
@@ -62,19 +74,15 @@ function App() {
       </Routes>
 
 
-      {/* GLOBAL ABOUT MODAL */}
+      {/* ABOUT MODAL */}
       {showAbout && (
-
         <AboutModal
           onClose={() => setShowAbout(false)}
         />
-
       )}
 
     </>
-
   );
-
 }
 
 export default App;

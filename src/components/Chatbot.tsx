@@ -20,19 +20,32 @@ export default function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
 
-  // Auto scroll animation
+  const controllerRef = useRef<AbortController | null>(null);
+
+
+
+  /* =========================
+     AUTO SCROLL
+  ========================= */
+
   useEffect(() => {
+
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth"
     });
+
   }, [messages, typing]);
 
+
+  /* =========================
+     SEND MESSAGE FUNCTION
+  ========================= */
 
   const sendMessage = async () => {
 
     const trimmedInput = input.trim();
 
-    if (!trimmedInput) return;
+    if (!trimmedInput || typing) return;
 
     const userMessage = {
       role: "user",
@@ -40,61 +53,113 @@ export default function Chatbot() {
     };
 
     setMessages(prev => [...prev, userMessage]);
+
     setInput("");
+
     setTyping(true);
+
 
     try {
 
+      /* Cancel previous request if exists */
+
+      if (controllerRef.current) {
+        controllerRef.current.abort();
+      }
+
+      controllerRef.current = new AbortController();
+
+
       const res = await fetch(
+
         `${import.meta.env.VITE_API_URL}/api/chat`,
+
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json"
           },
+
           body: JSON.stringify({
             message: trimmedInput
-          })
+          }),
+
+          signal: controllerRef.current.signal
+
         }
+
       );
+
+
+      if (!res.ok) throw new Error("Server error");
+
 
       const data = await res.json();
 
+
       const botMessage = {
+
         role: "bot",
-        text: data?.reply || "No response received."
+
+        text: data?.reply ||
+          "Please contact us for more details."
+
       };
+
 
       setMessages(prev => [...prev, botMessage]);
 
     }
 
-    catch (error) {
+    catch (error: unknown) {
 
-      console.error(error);
+  if (error instanceof Error) {
 
-      setMessages(prev => [
-        ...prev,
-        {
-          role: "bot",
-          text: "Sorry, something went wrong. Please try again."
-        }
-      ]);
+    if (error.name === "AbortError") return;
 
+    console.error("Chatbot error:", error.message);
+
+  } else {
+
+    console.error("Unexpected error:", error);
+
+  }
+
+  setMessages(prev => [
+    ...prev,
+    {
+      role: "bot",
+      text: "Sorry, something went wrong."
     }
+  ]);
+
+}
+
 
     finally {
+
       setTyping(false);
+
     }
+
   };
 
 
+  /* =========================
+     UI
+  ========================= */
+
   return (
+
     <>
 
-      {/* Floating button with pulse animation */}
+      {/* Floating Button */}
+
       <motion.button
+
         className="chatbot-button"
+
         onClick={() => setOpen(prev => !prev)}
 
         animate={{
@@ -107,21 +172,27 @@ export default function Chatbot() {
         }}
 
         whileHover={{ scale: 1.15 }}
+
         whileTap={{ scale: 0.9 }}
+
       >
+
         {open
           ? <X size={24}/>
           : <MessageCircle size={24}/>
         }
+
       </motion.button>
 
 
-      {/* Chat window */}
+      {/* Chat Window */}
+
       <AnimatePresence>
 
         {open && (
 
           <motion.div
+
             className="chatbot-window"
 
             initial={{
@@ -147,15 +218,14 @@ export default function Chatbot() {
               stiffness: 120,
               damping: 15
             }}
+
           >
 
-            {/* Header */}
             <div className="chatbot-header">
               Prime Origin Assistant
             </div>
 
 
-            {/* Messages */}
             <div className="chatbot-messages">
 
               <AnimatePresence>
@@ -163,7 +233,9 @@ export default function Chatbot() {
                 {messages.map((msg, index) => (
 
                   <motion.div
+
                     key={index}
+
                     className={`message ${msg.role}`}
 
                     initial={{
@@ -178,16 +250,12 @@ export default function Chatbot() {
                       scale: 1
                     }}
 
-                    exit={{
-                      opacity: 0,
-                      scale: 0.9
-                    }}
+                    transition={{ duration: 0.25 }}
 
-                    transition={{
-                      duration: 0.25
-                    }}
                   >
+
                     {msg.text}
+
                   </motion.div>
 
                 ))}
@@ -195,19 +263,22 @@ export default function Chatbot() {
               </AnimatePresence>
 
 
-              {/* Typing animation */}
+              {/* Typing Indicator */}
+
               {typing && (
-                <motion.div
-                  className="message bot typing"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
+
+                <div className="message bot typing">
+
                   <div className="typing-dots">
+
                     <span></span>
                     <span></span>
                     <span></span>
+
                   </div>
-                </motion.div>
+
+                </div>
+
               )}
 
               <div ref={messagesEndRef} />
@@ -216,22 +287,40 @@ export default function Chatbot() {
 
 
             {/* Input */}
+
             <div className="chatbot-input">
 
               <input
+
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+
+                onChange={(e) =>
+                  setInput(e.target.value)
+                }
 
                 placeholder="Ask about exports..."
 
+                disabled={typing}
+
                 onKeyDown={(e) => {
+
                   if (e.key === "Enter")
                     sendMessage();
+
                 }}
+
               />
 
-              <button onClick={sendMessage}>
+              <button
+
+                onClick={sendMessage}
+
+                disabled={typing}
+
+              >
+
                 Send
+
               </button>
 
             </div>
@@ -243,5 +332,7 @@ export default function Chatbot() {
       </AnimatePresence>
 
     </>
+
   );
+
 }
