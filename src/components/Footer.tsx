@@ -132,7 +132,7 @@ const Footer = ({ onAboutClick }: Props) => {
           </div>
 
           <div className="footer-bottom">
-            <p>© {currentYear} TrendyShop. All rights reserved.</p>
+            <p>© {currentYear} Prime Origin Exports. All rights reserved.</p>
           </div>
         </div>
       </footer>
