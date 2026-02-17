@@ -126,7 +126,7 @@ const BuyNowForm = ({ product, onClose }: BuyNowFormProps) => {
                 >
                   {loading
                     ? "Placing Order..."
-                    : `Confirm Order for ${product.name}`}
+                    : `Confirm Order`}
                 </button>
 
                 <button
